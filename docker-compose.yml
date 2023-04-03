@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  frontend:
+    build: './frontend'
+    container_name: frontend-trade
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    command: npm run start
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./frontend/src:/usr/src/app/src
+    environment:
+      - PORT=3000
+      - NODE_ENV=development

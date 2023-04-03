@@ -8,3 +8,6 @@ Description:
 6. Clicking on "Buy" button need dispatch OpenTrade action, intercept in middleware
 7. Middleware function should emulate 2 seconds timeout and dispatch AddTrade action with new Trade instance that contains amount from modal and currency $
 
+# To start docker run
+
+docker compose up frontend
