@@ -1,17 +1,27 @@
-import { Form, Input, Section, Title } from './Trade.styles';
+import { useEffect, useState } from 'react';
+import { Trade } from '../../models/trade';
+import { Input, List, ListItem, Section, Text, Title } from './Trade.styles';
 
 const TradeComponent = () => {
+  const [trades, setTrades] = useState<Trade[]>([]);
+
+  useEffect(() => {
+    setTrades((prevState) => [...prevState, { currency: 'USD', amount: 10 }]);
+  }, []);
+
   return (
-    <Form>
-      <Section>
-        <Title>Amount:</Title>
-        <Input type="number" />
-      </Section>
-      <Section>
-        <Title type="text">Currency:</Title>
-        <Input />
-      </Section>
-    </Form>
+    <Section>
+      <Title>Your Trades</Title>
+      <List>
+        {trades.map(({ currency, amount }) => (
+          <ListItem>
+            <Text>{currency}</Text>:<Text>{amount}</Text>
+          </ListItem>
+        ))}
+      </List>
+
+      <Input type="button" value="Open Trade" />
+    </Section>
   );
 };
 

@@ -1,4 +1,3 @@
-import { StrictMode } from 'react';
 import { Wrapper } from './App.styles';
 import { createGlobalStyle } from 'styled-components';
 import MainComponent from './components/Main/Main.component';
@@ -13,12 +12,12 @@ const GlobalStyle = createGlobalStyle`
 
 function AppComponent(): JSX.Element {
   return (
-    <StrictMode>
+    <>
       <GlobalStyle />
       <Wrapper>
         <MainComponent />
       </Wrapper>
-    </StrictMode>
+    </>
   );
 }
 
