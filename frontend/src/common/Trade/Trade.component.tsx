@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { Trade } from '../../models/trade';
 import { Input, List, ListItem, Section, Text, Title } from './Trade.styles';
 
@@ -9,18 +9,24 @@ const TradeComponent = () => {
     setTrades((prevState) => [...prevState, { currency: 'USD', amount: 10 }]);
   }, []);
 
+  const onClickHandler = (event: SyntheticEvent) => {
+    const target = event.target as HTMLInputElement;
+    console.log(target.value);
+  };
+
   return (
     <Section>
       <Title>Your Trades</Title>
       <List>
-        {trades.map(({ currency, amount }) => (
-          <ListItem>
-            <Text>{currency}</Text>:<Text>{amount}</Text>
+        {trades.map(({ currency, amount }, index) => (
+          <ListItem key={index}>
+            <Text>{currency}</Text>
+            <Text>{amount}</Text>
           </ListItem>
         ))}
       </List>
 
-      <Input type="button" value="Open Trade" />
+      <Input type="button" value="open trade" onClick={onClickHandler} />
     </Section>
   );
 };
