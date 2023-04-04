@@ -1,19 +1,20 @@
 import styled from 'styled-components';
+import { gridPx } from '../../utils/styleHelpers';
 
 export const Form = styled.form`
-  border: 1px solid grey;
-  padding: 5px;
+  border: ${gridPx(1)} solid grey;
+  padding: ${gridPx(5)};
   width: fit-content;
 `;
 
 export const Section = styled.section`
-  padding: 10px;
-  border: 1px solid dimgrey;
-  width: 150px;
+  padding: ${gridPx(10)};
+  border: ${gridPx(1)} solid dimgrey;
+  width: ${gridPx(150)};
 `;
 
 export const Title = styled.h5`
-  margin: 5px;
+  margin: ${gridPx(5)};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,21 +25,21 @@ export const Input = styled.input.attrs(({ type, value }: { type: string; value?
   type: type || 'text',
   value: value || '',
 }))`
-  min-height: 20px;
-  min-width: 30px;
+  min-height: ${gridPx(20)};
+  min-width: ${gridPx(30)};
   cursor: pointer;
-  margin: 10px auto 0;
+  margin: ${gridPx(10)} auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 3px;
+  padding: ${gridPx(3)};
   text-transform: capitalize;
 `;
 
 export const List = styled.ul`
   list-style-type: none;
   padding: 0;
-  height: 150px;
+  height: ${gridPx(150)};
   overflow-x: hidden;
 `;
 
@@ -52,6 +53,6 @@ export const Text = styled.strong`
   text-transform: uppercase;
 
   &:nth-child(2) {
-    margin-left: 5px;
+    margin-left: ${gridPx(5)};
   }
 `;

@@ -1,6 +1,7 @@
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { Trade } from '../../models/trade';
 import { Input, List, ListItem, Section, Text, Title } from './Trade.styles';
+import { uuid } from '../../utils/commonHelpers';
 
 const TradeComponent = () => {
   const [trades, setTrades] = useState<Trade[]>([]);
@@ -18,8 +19,8 @@ const TradeComponent = () => {
     <Section>
       <Title>Your Trades</Title>
       <List>
-        {trades.map(({ currency, amount }, index) => (
-          <ListItem key={index}>
+        {trades.map(({ currency, amount }) => (
+          <ListItem key={uuid()}>
             <Text>{currency}</Text>
             <Text>{amount}</Text>
           </ListItem>
