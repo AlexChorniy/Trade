@@ -1,7 +1,8 @@
 import { SyntheticEvent, useEffect, useState } from 'react';
 import { Trade } from '../../models/trade';
-import { Input, List, ListItem, Section, Text, Title } from './Trade.styles';
+import { List, ListItem, Section, Text, Title } from './Trade.styles';
 import { uuid } from '../../utils/commonHelpers';
+import { Input } from '../../styles/common.styles';
 
 const TradeComponent = () => {
   const [trades, setTrades] = useState<Trade[]>([]);
