@@ -1,21 +1,37 @@
 import MainComponent from './components/Main/Main.component';
-import { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import ModalComponent from './common/Modal/Modal.component';
 import 'normalize.css';
 import { GlobalStyle } from './styles/global.styles';
+import { ImperativeModal } from './models/modal';
 
 function AppComponent(): JSX.Element {
-  const [toggleModal, setToggleModal] = useState<boolean>(false);
-  const modalRef = useRef(null);
+  const modalRef = useRef<ImperativeModal>(null);
+
+  const openModal = (): void => {
+    if (modalRef.current !== null) {
+      modalRef.current.openModal();
+    }
+  };
+
+  const closeModal = (): void => {
+    if (modalRef.current !== null) {
+      modalRef.current.closeModal();
+    }
+  };
 
   return (
-    <>
+    <React.Fragment>
       <GlobalStyle />
       <MainComponent />
-      {toggleModal && (
-        <ModalComponent onClickHandler={() => setToggleModal((prevState) => !prevState)} ref={modalRef.current} />
-      )}
-    </>
+      <button onClick={openModal}>Open Modal</button>
+      <ModalComponent ref={modalRef}>
+        <div>
+          <h6>Modal Header</h6>
+          <button onClick={closeModal}>Close Modal</button>
+        </div>
+      </ModalComponent>
+    </React.Fragment>
   );
 }
 

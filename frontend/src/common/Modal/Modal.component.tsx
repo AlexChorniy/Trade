@@ -1,20 +1,39 @@
 import { Container } from './Modal.styles';
-import { Input } from '../../styles/common.styles';
-import { forwardRef, ReactNode, SyntheticEvent } from 'react';
+import { forwardRef, ReactNode, useImperativeHandle, useState } from 'react';
+import { ImperativeModal } from '../../models/modal';
 
 type TProps = {
   children?: ReactNode;
-  inputName?: string;
-  onClickHandler: (event: SyntheticEvent) => void;
 };
 
-const ModalComponent = forwardRef(({ children, inputName, onClickHandler }: TProps, ref): JSX.Element => {
-  return (
-    <Container onClick={onClickHandler}>
-      {children}
-      <Input type="button" value={inputName || 'Buy'} ref={ref} onClick={onClickHandler} />
-    </Container>
-  );
+const ModalComponent = forwardRef<ImperativeModal, TProps>(({ children }: TProps, forwardedRef): JSX.Element | null => {
+
+  const [display, setDisplay] = useState<boolean>(true);
+
+  useImperativeHandle(forwardedRef, (): ImperativeModal => {
+    return {
+      openModal: (): void => open(),
+      closeModal: (): void => close(),
+    };
+  });
+
+  const open = (): void => {
+    setDisplay(true);
+  };
+
+  const close = (): void => {
+    setDisplay(false);
+  };
+
+  if (display) {
+    return (
+      <Container onClick={close} ref={forwardedRef}>
+        {children}
+      </Container>
+    );
+  }
+
+  return null;
 });
 
 export default ModalComponent;
