@@ -1,5 +1,5 @@
 import { Container } from './Modal.styles';
-import { forwardRef, ReactNode, useImperativeHandle, useState } from 'react';
+import { forwardRef, ReactNode, SyntheticEvent, useImperativeHandle, useRef, useState } from 'react';
 import { ImperativeModal } from '../../models/modal';
 
 type TProps = {
@@ -9,8 +9,9 @@ type TProps = {
 const ModalComponent = forwardRef<ImperativeModal, TProps>(({ children }: TProps, forwardedRef): JSX.Element | null => {
 
   const [display, setDisplay] = useState<boolean>(true);
+  const modalContentRef = useRef<HTMLDivElement>(null);
 
-  useImperativeHandle(forwardedRef, (): ImperativeModal => {
+  useImperativeHandle(forwardedRef, (): any => {
     return {
       openModal: (): void => open(),
       closeModal: (): void => close(),
@@ -25,10 +26,17 @@ const ModalComponent = forwardRef<ImperativeModal, TProps>(({ children }: TProps
     setDisplay(false);
   };
 
+  const onOutsideClickHandler = (event: SyntheticEvent): void => {
+    if (modalContentRef.current?.contains(event.target as Node)) {
+      return;
+    }
+    close();
+  };
+
   if (display) {
     return (
-      <Container onClick={close} ref={forwardedRef}>
-        {children}
+      <Container onClick={onOutsideClickHandler}>
+        <div ref={modalContentRef}>{children}</div>
       </Container>
     );
   }

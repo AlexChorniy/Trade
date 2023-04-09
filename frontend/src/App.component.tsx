@@ -3,8 +3,8 @@ import React, { useRef } from 'react';
 import Modal from './common/Modal';
 import 'normalize.css';
 import { GlobalStyle } from './styles/global.styles';
-import { ImperativeModal } from './models/modal';
 import BuyCurrency from './common/BuyCurrency';
+import { ImperativeModal } from './models/modal';
 
 function AppComponent(): JSX.Element {
   const modalRef = useRef<ImperativeModal>(null);
