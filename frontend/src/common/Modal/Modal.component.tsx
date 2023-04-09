@@ -11,7 +11,7 @@ const ModalComponent = forwardRef<ImperativeModal, TProps>(({ children }: TProps
   const [display, setDisplay] = useState<boolean>(true);
   const modalContentRef = useRef<HTMLDivElement>(null);
 
-  useImperativeHandle(forwardedRef, (): any => {
+  useImperativeHandle(forwardedRef, (): ImperativeModal => {
     return {
       openModal: (): void => open(),
       closeModal: (): void => close(),
