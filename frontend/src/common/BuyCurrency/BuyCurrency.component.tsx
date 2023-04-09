@@ -1,22 +1,40 @@
-import { Container, Title } from './BuyCurrency.styles';
+import { Form, Title } from './BuyCurrency.styles';
 import { Input } from '../../styles/common.styles';
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useState } from 'react';
+import { Trade } from '../../models/trade';
 
 type TBuyCurrency = {
-  onClickHandler: (event: SyntheticEvent) => void;
+  onClickHandler: (event?: SyntheticEvent) => void;
+  setTrade: (trade: Trade) => void;
 };
 
-const BuyCurrencyComponent = ({ onClickHandler }: TBuyCurrency) => {
-  const onChangeHandler = (event: SyntheticEvent) => {
-    console.log(event);
+const BuyCurrencyComponent = ({ onClickHandler, setTrade }: TBuyCurrency) => {
+  const [currency, setCurrency] = useState<string>('');
+  const [amount, setAmount] = useState<number>();
+
+  const onChangeCurrency = (event: SyntheticEvent) => {
+    const value = (event.target as HTMLInputElement).value;
+    setCurrency(value);
+  };
+
+  const onChangeAmount = (event: SyntheticEvent) => {
+    const value = (event.target as HTMLInputElement).value;
+    setAmount(Number(value));
+  };
+
+  const onSubmitHandler = () => {
+    if (currency && amount) {
+      setTrade({ currency, amount });
+      onClickHandler();
+    }
   };
   return (
-    <Container>
+    <Form>
       <Title>BuyCurrency</Title>
-      <Input type='text' placehollder='currency' onChange={onChangeHandler} />
-      <Input type='text' placehollder='amount' onChange={onChangeHandler} />
-      <Input type='button' value='Buy' onClick={onClickHandler} />
-    </Container>
+      <Input type='text' value={currency} name='fCurrency' placehollder='currency' onChange={onChangeCurrency} />
+      <Input type='number' value={amount} name='fAmount' placehollder='amount' onChange={onChangeAmount} />
+      <Input type='button' value='Buy' onClick={onSubmitHandler} />
+    </Form>
   );
 };
 

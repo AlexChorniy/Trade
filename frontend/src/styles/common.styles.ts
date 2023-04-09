@@ -1,16 +1,7 @@
 import styled from 'styled-components';
 import { gridPx } from '../utils/styleHelpers';
-import { InputType } from '../models/trade';
-import { SyntheticEvent } from 'react';
 
-export const Input = styled.input.attrs(({ type, value, ref, onClick, onChange, placeholder }: InputType) => ({
-  type: type || 'text',
-  value: value || '',
-  ref,
-  onClick: (event: SyntheticEvent) => onClick && event && onClick(event),
-  onChange: (event: SyntheticEvent) => onChange && event && onChange(event),
-  placeholder,
-}))<HTMLInputElement>`
+export const Input = styled.input`
   min-height: ${gridPx(20)};
   min-width: ${gridPx(30)};
   cursor: pointer;

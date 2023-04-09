@@ -1,18 +1,15 @@
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { SyntheticEvent } from 'react';
 import { Trade } from '../../models/trade';
 import { List, ListItem, Section, Text, Title } from './Trade.styles';
 import { uuid } from '../../utils/commonHelpers';
 import { Input } from '../../styles/common.styles';
 
-type TTrade = { onClickHandler: (event: SyntheticEvent) => void }
+type TTrade = {
+  onClickHandler: (event: SyntheticEvent) => void;
+  trades: Trade[];
+}
 
-const TradeComponent = ({ onClickHandler }: TTrade) => {
-  const [trades, setTrades] = useState<Trade[]>([]);
-
-  useEffect(() => {
-    setTrades((prevState) => [...prevState, { currency: 'USD', amount: 10 }]);
-  }, []);
-
+const TradeComponent = ({ onClickHandler, trades }: TTrade) => {
   return (
     <Section>
       <Title>Your Trades</Title>

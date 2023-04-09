@@ -1,12 +1,14 @@
 import Main from './components/Main';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Modal from './common/Modal';
 import 'normalize.css';
 import { GlobalStyle } from './styles/global.styles';
 import BuyCurrency from './common/BuyCurrency';
 import { ImperativeModal } from './models/modal';
+import { Trade } from './models/trade';
 
 function AppComponent(): JSX.Element {
+  const [trades, setTrades] = useState<Trade[]>([]);
   const modalRef = useRef<ImperativeModal>(null);
 
   const openModal = (): void => {
@@ -24,9 +26,10 @@ function AppComponent(): JSX.Element {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Main onOpenModalHandler={openModal} />
+      <Main onOpenModalHandler={openModal} trades={trades} />
       <Modal ref={modalRef}>
-        <BuyCurrency onClickHandler={closeModal} />
+        <BuyCurrency onClickHandler={closeModal}
+                     setTrade={(trade) => setTrades((prevState) => [...prevState, trade])} />
       </Modal>
     </React.Fragment>
   );

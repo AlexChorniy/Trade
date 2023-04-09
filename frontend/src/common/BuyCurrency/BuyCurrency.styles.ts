@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colorGrey1 } from '../../styles/additional.colors';
 import { gridPx } from '../../utils/styleHelpers';
 
-export const Container = styled.div`
+export const Form = styled.form`
   background-color: ${colorGrey1};
   width: 400px;
   margin: 0 auto;
