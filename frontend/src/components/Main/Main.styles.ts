@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colorViolet1, colorWhite1 } from '../../styles/additionalColors';
+import { colorViolet1, colorWhite1 } from '../../styles/additional.colors';
 
 export const Main = styled.main`
   background-color: ${colorWhite1};

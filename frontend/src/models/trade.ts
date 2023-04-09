@@ -7,4 +7,11 @@ export interface Trade {
 
 export type InputRef = HTMLInputElement;
 
-export type InputType = { type: string; value?: string; ref: InputRef; onClick: (event: SyntheticEvent) => void };
+export type InputType = {
+  type: string;
+  value?: string;
+  ref?: InputRef;
+  onClick?: (event: SyntheticEvent) => void;
+  onChange?: (event: SyntheticEvent) => void;
+  placeholder: string;
+};

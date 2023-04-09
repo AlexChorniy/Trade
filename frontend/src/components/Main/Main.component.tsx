@@ -1,10 +1,16 @@
 import { Main } from './Main.styles';
-import TradeComponent from '../../common/Trade/Trade.component';
+import TradeComponent from '../../common/Trade';
+import { SyntheticEvent } from 'react';
 
-function MainComponent(): JSX.Element {
+
+type TMainComponent = {
+  onOpenModalHandler: (event: SyntheticEvent) => void
+}
+
+function MainComponent({ onOpenModalHandler }: TMainComponent): JSX.Element {
   return (
     <Main>
-      <TradeComponent />
+      <TradeComponent onClickHandler={onOpenModalHandler} />
     </Main>
   );
 }

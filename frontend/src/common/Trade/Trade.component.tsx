@@ -4,17 +4,14 @@ import { List, ListItem, Section, Text, Title } from './Trade.styles';
 import { uuid } from '../../utils/commonHelpers';
 import { Input } from '../../styles/common.styles';
 
-const TradeComponent = () => {
+type TTrade = { onClickHandler: (event: SyntheticEvent) => void }
+
+const TradeComponent = ({ onClickHandler }: TTrade) => {
   const [trades, setTrades] = useState<Trade[]>([]);
 
   useEffect(() => {
     setTrades((prevState) => [...prevState, { currency: 'USD', amount: 10 }]);
   }, []);
-
-  const onClickHandler = (event: SyntheticEvent) => {
-    const target = event.target as HTMLInputElement;
-    console.log(target.value);
-  };
 
   return (
     <Section>
@@ -28,7 +25,7 @@ const TradeComponent = () => {
         ))}
       </List>
 
-      <Input type="button" value="open trade" onClick={onClickHandler} />
+      <Input type='button' value='open trade' onClick={onClickHandler} />
     </Section>
   );
 };

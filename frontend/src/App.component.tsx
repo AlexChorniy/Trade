@@ -1,9 +1,10 @@
-import MainComponent from './components/Main/Main.component';
+import Main from './components/Main';
 import React, { useRef } from 'react';
-import ModalComponent from './common/Modal/Modal.component';
+import Modal from './common/Modal';
 import 'normalize.css';
 import { GlobalStyle } from './styles/global.styles';
 import { ImperativeModal } from './models/modal';
+import BuyCurrency from './common/BuyCurrency';
 
 function AppComponent(): JSX.Element {
   const modalRef = useRef<ImperativeModal>(null);
@@ -23,14 +24,10 @@ function AppComponent(): JSX.Element {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <MainComponent />
-      <button onClick={openModal}>Open Modal</button>
-      <ModalComponent ref={modalRef}>
-        <div>
-          <h6>Modal Header</h6>
-          <button onClick={closeModal}>Close Modal</button>
-        </div>
-      </ModalComponent>
+      <Main onOpenModalHandler={openModal} />
+      <Modal ref={modalRef}>
+        <BuyCurrency onClickHandler={closeModal} />
+      </Modal>
     </React.Fragment>
   );
 }

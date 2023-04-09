@@ -24,7 +24,6 @@ export const Title = styled.h5`
 export const List = styled.ul`
   list-style-type: none;
   padding: 0;
-  height: ${gridPx(150)};
   overflow-x: hidden;
 `;
 
