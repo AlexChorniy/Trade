@@ -10,7 +10,7 @@ type TBuyCurrency = {
 
 const BuyCurrencyComponent = ({ onClickHandler, setTrade }: TBuyCurrency) => {
   const [currency, setCurrency] = useState<string>('');
-  const [amount, setAmount] = useState<number>();
+  const [amount, setAmount] = useState<string>('');
 
   const onChangeCurrency = (event: SyntheticEvent) => {
     const value = (event.target as HTMLInputElement).value;
@@ -19,21 +19,21 @@ const BuyCurrencyComponent = ({ onClickHandler, setTrade }: TBuyCurrency) => {
 
   const onChangeAmount = (event: SyntheticEvent) => {
     const value = (event.target as HTMLInputElement).value;
-    setAmount(Number(value));
+    setAmount(value);
   };
 
   const onSubmitHandler = () => {
-    if (currency && amount) {
-      setTrade({ currency, amount });
+    if (currency && (+amount === 0 || +amount)) {
+      setTrade({ currency, amount: +amount });
       onClickHandler();
     }
   };
   return (
     <Form>
       <Title>BuyCurrency</Title>
-      <Input type='text' value={currency} name='fCurrency' placehollder='currency' onChange={onChangeCurrency} />
-      <Input type='number' value={amount} name='fAmount' placehollder='amount' onChange={onChangeAmount} />
-      <Input type='button' value='Buy' onClick={onSubmitHandler} />
+      <Input type="text" value={currency} name="fCurrency" placehollder="currency" onChange={onChangeCurrency} />
+      <Input type="number" value={amount} name="fAmount" placehollder="amount" onChange={onChangeAmount} />
+      <Input type="button" value="Buy" onClick={onSubmitHandler} />
     </Form>
   );
 };
