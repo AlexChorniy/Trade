@@ -1,16 +1,13 @@
 import { Form, Title } from './BuyCurrency.styles';
 import { Input } from '../../styles/common.styles';
 import { SyntheticEvent, useState } from 'react';
-import { Trade } from '../../models/trade';
+// import { useDispatch } from 'react-redux';
 
-type TBuyCurrency = {
-  onClickHandler: (event?: SyntheticEvent) => void;
-  setTrade: (trade: Trade) => void;
-};
-
-const BuyCurrencyComponent = ({ onClickHandler, setTrade }: TBuyCurrency) => {
+const BuyCurrencyComponent = () => {
   const [currency, setCurrency] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
+
+  // const dispatch = useDispatch();
 
   const onChangeCurrency = (event: SyntheticEvent) => {
     const value = (event.target as HTMLInputElement).value;
@@ -24,8 +21,8 @@ const BuyCurrencyComponent = ({ onClickHandler, setTrade }: TBuyCurrency) => {
 
   const onSubmitHandler = () => {
     if (currency && (+amount === 0 || +amount)) {
-      setTrade({ currency, amount: +amount });
-      onClickHandler();
+      // setTrade({ currency, amount: +amount });
+      // dispatch();
     }
   };
   return (

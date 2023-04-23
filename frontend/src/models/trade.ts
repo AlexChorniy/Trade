@@ -1,4 +1,5 @@
 export interface Trade {
-  amount: number;
-  currency: string;
+    id: string;
+    amount: number;
+    currency: string;
 }
