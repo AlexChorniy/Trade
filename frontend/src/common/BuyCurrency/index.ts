@@ -1,3 +1,1 @@
-import Component from './BuyCurrency.component';
-
-export default Component;
+export {default} from './BuyCurrency.component';

@@ -25,8 +25,9 @@ const ModalComponent = forwardRef<ImperativeModal, TProps>(({children}: TProps, 
         setDisplay(false);
     };
 
-    const onOutsideClickHandler = (event: MouseEvent): void => {
-        if (modalContentRef.current?.contains(event.target as Node)) {
+    const onOutsideClickHandler = ({target}: MouseEvent): void => {
+
+        if (modalContentRef.current?.contains(target as Node)) {
             return;
         }
         close();

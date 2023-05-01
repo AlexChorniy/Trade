@@ -3,8 +3,8 @@ import React, {useRef} from 'react';
 import Modal from './common/Modal';
 import 'normalize.css';
 import {GlobalStyle} from './styles/global.styles';
-import Counter from './common/Counter';
 import {ImperativeModal} from './models/modal';
+import BuyCurrency from "./common/BuyCurrency";
 
 function AppComponent(): JSX.Element {
     const modalRef = useRef<ImperativeModal | null>(null);
@@ -15,23 +15,19 @@ function AppComponent(): JSX.Element {
         }
     };
 
-    // const closeModal = (): void => {
-    //   if (modalRef.current) {
-    //     modalRef.current?.closeModal();
-    //   }
-    // };
-
-    // const onTradesHandler = (trade: Trade): void => {
-    //   setTrades((prevState) => [...prevState, trade]);
-    // };
+    const closeModal = (): void => {
+        if (modalRef.current) {
+            modalRef.current?.closeModal();
+        }
+    };
 
     return (
         <React.StrictMode>
             <GlobalStyle/>
             <Main onOpenModalHandler={openModal}/>
             <Modal ref={modalRef}>
-                {/*<BuyCurrency />*/}
-                <Counter/>
+                <BuyCurrency onSubmitFormHandler={closeModal}/>
+                {/*<Counter/>*/}
             </Modal>
         </React.StrictMode>
     );

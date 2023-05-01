@@ -1,18 +1,17 @@
 import {SyntheticEvent} from 'react';
 import {List, ListItem, Section, Text, Title} from './Trade.styles';
-import {uuid} from '../../utils/commonHelpers';
 import {Input} from '../../styles/common.styles';
+import {useSelector} from "react-redux";
+import {selectTrades} from "../../redux/reducers/tradesSlice";
 
 type TTrade = {
     onClickHandler: (event: SyntheticEvent) => void;
 };
 
 const ListElements = (): JSX.Element => {
-    const trades = [
-        {id: uuid(), currency: 'wer', amount: 11},
-        {id: uuid(), currency: 'wer2', amount: 12},
-        {id: uuid(), currency: 'qwerty', amount: 15}
-    ];
+
+    const trades = useSelector(selectTrades);
+
     return (
         <List>
             {trades.map(({currency, amount, id}) => (
